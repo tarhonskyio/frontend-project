@@ -62,7 +62,7 @@ export default function DayTaskManager({ year, month, day }) {
       </ul>
 
       {/* DODAWANIE ZADANIA */}
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <input
           className="
             flex-1 px-4 py-2
@@ -88,7 +88,8 @@ export default function DayTaskManager({ year, month, day }) {
             hover:from-emerald-600 hover:to-teal-600
             active:scale-95
             transition
-          "
+            w-full sm:w-auto
+        "
           onClick={() => {
             if (text.trim()) {
               addTask(dateKey, text);
