@@ -1,18 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import MonthYearSelector from "./components/calendar/MonthYearSelector";
 import DayTaskManager from "./components/calendar/DayTaskManager";
 import { useTasks } from "./components/useTasks";
 import { useLang } from "./i18n/LanguageProvider";
+import { useAuth } from "./components/AuthProvider";
 
 export default function HomePage() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
   const [day, setDay] = useState(null);
 
   const { tasks } = useTasks();
   const { t } = useLang();
+
+  useEffect(() => {
+    if (loading) return;
+
+    if (!user) {
+      router.replace("/login");
+    }
+  }, [user, loading, router]);
+
+  if (!user) return null;
+
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   return (
@@ -50,7 +66,6 @@ export default function HomePage() {
                   }`}
               >
                 {d}
-
                 {count > 0 && (
                   <span className="absolute top-1 right-1 text-xs bg-emerald-700 text-white rounded-full px-1.5">
                     {count}
