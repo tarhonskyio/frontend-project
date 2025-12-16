@@ -19,7 +19,7 @@ export const translations = {
     email: "Email",
     password: "Hasło",
     signIn: "Zaloguj się",
-    login: "Login",
+    login: "Logowanie",
     register: "Rejestracja",
     noAccount: "Nie masz konta?",
     signUp: "Zarejestruj się",
@@ -35,7 +35,7 @@ export const translations = {
     home: "Strona główna",
     about: "O awtorze",
     login: "Login",
-    register: "Register",
+    register: "Registracja",
 
     months: [
       "styczeń",
